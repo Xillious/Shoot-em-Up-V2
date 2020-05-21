@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint_4;
     public Transform firePoint_5;
 
+    public Transform[] MissilePoints;
 
     private Rigidbody2D rb;
 
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private Sprite playerSprite;
 
+    ObjectPooler objectPooler;
 
     void Start()
     {
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
         //playerSprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(InitialiseStats());
+        objectPooler = ObjectPooler.Instance;
     }
 
     void FixedUpdate()
@@ -81,21 +84,25 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
+        //objectPooler.SpawnfromPool("Bullet", firePoint_1.position, firePoint_1.rotation);
+
         if (_playerLevel == 1)
         {
-            Instantiate(_bullet, firePoint_1.position, firePoint_1.rotation);
+            objectPooler.SpawnfromPool("Rocket", firePoint_1.position, firePoint_1.rotation);
         }
         else if (_playerLevel == 2)
         {
-            Instantiate(_bullet, firePoint_2.position, firePoint_2.rotation);
-            Instantiate(_bullet, firePoint_3.position, firePoint_3.rotation);
+            objectPooler.SpawnfromPool("Bullet", firePoint_2.position, firePoint_2.rotation);
+            objectPooler.SpawnfromPool("Bullet", firePoint_3.position, firePoint_3.rotation);
         }
         else if (_playerLevel == 3)
         {
-            Instantiate(_bullet, firePoint_1.position, firePoint_1.rotation = Quaternion.Euler(0, 0, 0));
-            Instantiate(_bullet, firePoint_2.position, firePoint_2.rotation = Quaternion.Euler(0, 30, 30));
-            Instantiate(_bullet, firePoint_3.position, firePoint_3.rotation = Quaternion.Euler(0, -30, -30));
+            objectPooler.SpawnfromPool("Bullet", firePoint_1.position, firePoint_1.rotation = Quaternion.Euler(0, 0, 0));
+            objectPooler.SpawnfromPool("Bullet", firePoint_2.position, firePoint_2.rotation = Quaternion.Euler(0, 30, 30));
+            objectPooler.SpawnfromPool("Bullet", firePoint_3.position, firePoint_3.rotation = Quaternion.Euler(0, -30, -30));
+
         }
+
         _shotCooldown = 0;
     }
 

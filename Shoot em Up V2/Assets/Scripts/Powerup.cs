@@ -16,7 +16,7 @@ public class Powerup : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(0, -movespeed * Time.deltaTime, 0);
+        //transform.Translate(0, -movespeed * Time.deltaTime, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
