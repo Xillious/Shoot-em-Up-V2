@@ -5,14 +5,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    float speed = 15f;
-    public Rigidbody2D rb;
+    public float speed = 15f;
+
 
     void Start()
     {
-        //rb.velocity = transform.up * speed;
 
-        // StartCoroutine(Destroy());
+
+
     }
 
 
@@ -26,4 +26,22 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
+
+
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("hit enemy");
+            gameObject.SetActive(false);
+            ObjectPooler.Instance.SpawnfromPool("Explosion", transform.position, transform.rotation);
+        }
+    }
+
+
+
+
 }

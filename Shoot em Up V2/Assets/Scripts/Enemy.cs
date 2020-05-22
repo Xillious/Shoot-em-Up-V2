@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -53,4 +53,5 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+    */
 }

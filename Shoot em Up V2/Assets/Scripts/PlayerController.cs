@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (_playerLevel == 1)
         {
-            objectPooler.SpawnfromPool("Rocket", firePoint_1.position, firePoint_1.rotation);
+            objectPooler.SpawnfromPool("Bullet", firePoint_1.position, firePoint_1.rotation);
         }
         else if (_playerLevel == 2)
         {
